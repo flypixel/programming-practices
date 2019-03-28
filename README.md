@@ -1,4 +1,5 @@
 # programming-practices
+1. Memory allocation
 
 for x64:
 1. Amount of memory to allocate is 17665 MB
