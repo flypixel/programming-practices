@@ -25,25 +25,25 @@ namespace AllowedMemory
 
         private static int SingleBlockOfMemory()
         {
-            int i = 2000;
+            int i = 20;
             try
             {
                 for (; ; i++)
                 {
-                    var bytes = new byte[(i + 1) * mb];
+                    var bytes = new long[(i + 1) * mb];
                 }
             }
             catch (OutOfMemoryException)
             {
             }
-            return i;
+            return i * 8;
         }
 
         static void Main(string[] args)
         {
             var memory = AmaoutOfAvailableMemory();
             Console.WriteLine($"1. Amount of memory to allocate is {memory} MB");
-
+            GC.Collect();
             var single = SingleBlockOfMemory();
             Console.WriteLine($"2. Amount of single block of memory is {single} MB");
         }
