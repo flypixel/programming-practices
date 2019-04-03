@@ -1,5 +1,5 @@
 # programming-practices
-1. Memory allocation
+### 1. Memory allocation
 
   for x64:
   1. Amount of memory to allocate is 17665 MB
@@ -10,7 +10,7 @@
   2. Amount of single block of memory is 1528 MB
 
 
-2. HashTable
+### 2. HashTable
 
   |              Method |     Mean |    Error |   StdDev | Ratio | Rank |
   |-------------------- |---------:|---------:|---------:|------:|-----:|
