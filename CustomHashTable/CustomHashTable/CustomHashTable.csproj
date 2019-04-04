@@ -178,7 +178,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HashTable.cs" />
+    <Compile Include="HashTables\AnotherHashTable.cs" />
+    <Compile Include="HashTables\HashTable.cs" />
+    <Compile Include="ICustomHashTable.cs" />
     <Compile Include="Keys\BadKeyObject.cs" />
     <Compile Include="Keys\KeyObject.cs" />
     <Compile Include="Keys\KeyObject1.cs" />

@@ -1,13 +1,12 @@
 ﻿using BenchmarkDotNet.Attributes;
 using CustomHashTable.Keys;
 using System;
-using System.Linq;
 
 namespace CustomHashTable
 {
     [ClrJob(baseline: true)]
     [RPlotExporter, RankColumn]
-    public class ModifyHashTableChecker
+    public class ModifyHashTableChecker<T> where T: ICustomHashTable, new()
     {
 
         const int size = 3_000_000;
@@ -63,20 +62,21 @@ namespace CustomHashTable
 
         private void BenchmarkBody(KeyObject[] data)
         {
-            var htable = new HashTable();
+            var htable = new T();
             foreach (var key in data)
             {
                 htable.Add(key, _item);
             }
         }
 
-        private void FillArray<T>(T[] array, int size) where T : KeyObject
+        private void FillArray<U>(U[] array, int size) where U : KeyObject
         {
             var rand = new Random();
-            array.Aggregate(_badData, (result, x) => {
-                x = (T)Activator.CreateInstance(typeof(T), rand.Next(size));
-                return result;
-            });
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = (U)Activator.CreateInstance(typeof(U), rand.Next(size));
+            }
         }
     }
 }

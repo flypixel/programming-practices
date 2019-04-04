@@ -1,27 +1,29 @@
-﻿using CustomHashTable.Keys;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using CustomHashTable.Keys;
 
-namespace CustomHashTable
+namespace CustomHashTable.HashTables
 {
-    public class HashTable : IDictionary<KeyObject, object>
+    public class AnotherHashTable : ICustomHashTable
     {
-        private LinkedList<KeyValuePair<KeyObject, object>>[] _inner 
-            = new LinkedList<KeyValuePair<KeyObject, object>>[10^6];
+        const int size = 1000_000;
 
+        KeyValuePair<KeyObject, object>?[] _inner
+            = new KeyValuePair<KeyObject, object>?[size];
 
         public void Add(KeyValuePair<KeyObject, object> item)
         {
-            var index = item.GetHashCode() % _inner.Length;
-            var list = _inner[index];
-
-            if (list == null)
+            var index = Math.Abs(item.Key.GetHashCode()) % _inner.Length;
+            while (_inner[index].HasValue)
             {
-                list = new LinkedList<KeyValuePair<KeyObject, object>>();
+                if (++index >= _inner.Length)
+                {
+                    ResizeArray();
+                }
             }
 
-            list.AddLast(item);
+            _inner[index] = item;
         }
 
         public void Add(KeyObject key, object value)
@@ -29,11 +31,18 @@ namespace CustomHashTable
             Add(new KeyValuePair<KeyObject, object>(key, value));
         }
 
-        public object this[KeyObject key]
+        private void ResizeArray()
         {
-            get => throw new NotImplementedException();
-            set => throw new NotImplementedException();
+            var newArr = new KeyValuePair<KeyObject, object>?[_inner.Length * 2];
+            for (int i = 0; i < _inner.Length; i++)
+            {
+                newArr[i] = _inner[i];
+            }
+            _inner = newArr;
         }
+
+        #region NotImplemented
+        public object this[KeyObject key] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public ICollection<KeyObject> Keys => throw new NotImplementedException();
 
@@ -87,5 +96,6 @@ namespace CustomHashTable
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }
