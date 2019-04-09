@@ -22,11 +22,11 @@ namespace CustomHashTable
         public void Setup()
         {
             FillArray(_data1, _data1.Length);
-            FillArray(_data2, _data1.Length);
-            FillArray(_data3, _data1.Length);
+            FillArray(_data2, _data2.Length);
+            FillArray(_data3, _data3.Length);
 
-            FillArray(_dataWithoutgaps, _data1.Length);
-            FillArray(_badData, _data1.Length);
+            FillArray(_dataWithoutgaps, _dataWithoutgaps.Length);
+            FillArray(_badData, _badData.Length);
         }
 
 

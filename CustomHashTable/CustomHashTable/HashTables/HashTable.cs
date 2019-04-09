@@ -8,9 +8,9 @@ namespace CustomHashTable.HashTables
 {
     public class HashTable : ICustomHashTable
     {
+        private const int capasity = 5;
         private List<KeyValuePair<KeyObject, object>>[] _inner 
             = new List<KeyValuePair<KeyObject, object>>[1000_000];
-
 
         public void Add(KeyValuePair<KeyObject, object> item)
         {
@@ -19,7 +19,7 @@ namespace CustomHashTable.HashTables
 
             if (list == null)
             {
-                list = new List<KeyValuePair<KeyObject, object>>();
+                list = new List<KeyValuePair<KeyObject, object>>(capasity);
             }
 
             if (list.Any(x => x.Key == item.Key))
