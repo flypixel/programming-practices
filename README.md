@@ -11,17 +11,15 @@
 
 
 ### 2. HashTable
+HashTable collection:
+|              Method |    Mean |    Error |   StdDev | Ratio | Rank |
+|-------------------- |--------:|---------:|---------:|------:|-----:|
+|    ArrayWithoutGaps | 1.189 s | 0.0237 s | 0.0478 s |  1.00 |    1 |
+|                     |         |          |          |       |      |
+|   FirstHashFunction | 3.212 s | 0.0625 s | 0.0768 s |  1.00 |    1 |
+|                     |         |          |          |       |      |
+| SecondtHashFunction | 3.163 s | 0.0614 s | 0.0707 s |  1.00 |    1 |
+|                     |         |          |          |       |      |
+|   ThirdHashFunction | 2.778 s | 0.0550 s | 0.0540 s |  1.00 |    1 |
 
-|              Method |       Mean |      Error |     StdDev |     Median | Ratio | Rank |
-|-------------------- |-----------:|-----------:|-----------:|-----------:|------:|-----:|
-|    ArrayWithoutGaps |   334.4 ms |  6.0484 ms |  4.7222 ms |   334.8 ms |  1.00 |    1 |
-|                     |            |            |            |            |       |      |
-|   ArrayWithBadItems |   267.0 ms |  0.8824 ms |  0.7369 ms |   267.0 ms |  1.00 |    1 |
-|                     |            |            |            |            |       |      |
-|   FirstHashFunction |   979.9 ms |  5.8536 ms |  4.8880 ms |   980.0 ms |  1.00 |    1 |
-|                     |            |            |            |            |       |      |
-| SecondtHashFunction | 1,031.8 ms | 26.0268 ms | 36.4860 ms | 1,012.3 ms |  1.00 |    1 |
-|                     |            |            |            |            |       |      |
-|   ThirdHashFunction |   999.3 ms |  7.5202 ms |  6.2797 ms |   999.1 ms |  1.00 |    1 |
-  
-
+Updated with checking for existing keys. Benchmarks with bad keys worked too long, so it was skipped
