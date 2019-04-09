@@ -21,12 +21,12 @@ namespace CustomHashTable
         [GlobalSetup]
         public void Setup()
         {
-            FillArray(_data1, _data1.Length);
-            FillArray(_data2, _data2.Length);
-            FillArray(_data3, _data3.Length);
+            FillArray(_data1);
+            FillArray(_data2);
+            FillArray(_data3);
 
-            FillArray(_dataWithoutgaps, _dataWithoutgaps.Length);
-            FillArray(_badData, _badData.Length);
+            FillArray(_dataWithoutgaps);
+            FillArray(_badData);
         }
 
 
@@ -69,13 +69,13 @@ namespace CustomHashTable
             }
         }
 
-        private void FillArray<U>(U[] array, int size) where U : KeyObject
+        private void FillArray<U>(U[] array) where U : KeyObject
         {
             var rand = new Random();
 
             for (int i = 0; i < array.Length; i++)
             {
-                array[i] = (U)Activator.CreateInstance(typeof(U), rand.Next(size));
+                array[i] = (U)Activator.CreateInstance(typeof(U), rand.Next(array.Length));
             }
         }
     }
