@@ -65,7 +65,14 @@ namespace CustomHashTable
             var htable = new T();
             foreach (var key in data)
             {
-                htable.Add(key, _item);
+                try
+                {
+                    htable.Add(key, _item);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 

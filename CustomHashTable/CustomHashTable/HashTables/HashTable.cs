@@ -22,7 +22,7 @@ namespace CustomHashTable.HashTables
                 list = new List<KeyValuePair<KeyObject, object>>(capasity);
             }
 
-            if (list.Any(x => x.Key == item.Key))
+            if (list.Any(x => x.Key.Equals(item.Key)))
             {
                 throw new ArgumentException($"The key \"{item.Key}\" already exists in the collection");
             }

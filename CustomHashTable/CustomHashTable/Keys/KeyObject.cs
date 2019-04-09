@@ -30,5 +30,15 @@ namespace CustomHashTable.Keys
         {
             return $"{Value}";
         }
+
+        public static bool operator ==(KeyObject o1, KeyObject o2)
+        {
+            return o1.Equals(o2);
+        }
+
+        public static bool operator !=(KeyObject o1, KeyObject o2)
+        {
+            return !o1.Equals(o2);
+        }
     }
 }
