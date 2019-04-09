@@ -5,7 +5,7 @@ using System;
 
 namespace CustomHashTable
 {
-    public class Bench : ModifyHashTableChecker<AnotherHashTable>
+    public class Bench : ModifyHashTableChecker<HashTable>
     {
     }
 

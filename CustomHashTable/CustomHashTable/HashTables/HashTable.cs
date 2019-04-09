@@ -20,6 +20,7 @@ namespace CustomHashTable.HashTables
             if (list == null)
             {
                 list = new List<KeyValuePair<KeyObject, object>>(capasity);
+                _inner[index] = list;
             }
 
             if (list.Any(x => x.Key.Equals(item.Key)))
@@ -28,6 +29,7 @@ namespace CustomHashTable.HashTables
             }
 
             list.Add(item);
+
         }
 
         public void Add(KeyObject key, object value)

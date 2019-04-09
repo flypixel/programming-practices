@@ -1,6 +1,8 @@
 ﻿using BenchmarkDotNet.Attributes;
 using CustomHashTable.Keys;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CustomHashTable
 {
@@ -80,9 +82,11 @@ namespace CustomHashTable
         {
             var rand = new Random();
 
+            List<int> possible = Enumerable.Range(0, array.Length).OrderBy(x => rand.Next(array.Length)).ToList();
+
             for (int i = 0; i < array.Length; i++)
             {
-                array[i] = (U)Activator.CreateInstance(typeof(U), rand.Next(array.Length));
+                array[i] = (U)Activator.CreateInstance(typeof(U), possible[i]);
             }
         }
     }
