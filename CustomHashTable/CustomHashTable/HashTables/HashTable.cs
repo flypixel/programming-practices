@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CustomHashTable.HashTables
 {
@@ -19,6 +20,11 @@ namespace CustomHashTable.HashTables
             if (list == null)
             {
                 list = new List<KeyValuePair<KeyObject, object>>();
+            }
+
+            if (list.Any(x => x.Key == item.Key))
+            {
+                throw new ArgumentException($"The key \"{item.Key}\" already exists in the collection");
             }
 
             list.Add(item);

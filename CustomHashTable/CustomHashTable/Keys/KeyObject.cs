@@ -14,5 +14,21 @@ namespace CustomHashTable.Keys
         {
             Value = value;
         }
+
+        public override bool Equals(object obj)
+        {
+            var x = (KeyObject)obj;
+            return Value == x.Value;
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return $"{Value}";
+        }
     }
 }

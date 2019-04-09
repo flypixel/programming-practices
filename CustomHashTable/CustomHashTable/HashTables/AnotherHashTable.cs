@@ -17,9 +17,15 @@ namespace CustomHashTable.HashTables
             var index = Math.Abs(item.Key.GetHashCode()) % _inner.Length;
             while (_inner[index].HasValue)
             {
+                if (_inner[index].Value.Key.Equals(item.Key))
+                {
+                    throw new ArgumentException($"Dublicate key '{item.Key}'");
+                }
+
                 if (++index >= _inner.Length)
                 {
                     ResizeArray();
+                    break;
                 }
             }
 

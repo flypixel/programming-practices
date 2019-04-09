@@ -14,7 +14,7 @@ namespace CustomHashTable
         static void Main(string[] args)
         {
             //BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args, new DebugInProcessConfig());
-            var summary = BenchmarkRunner.Run<ModifyHashTableChecker<AnotherHashTable>>();
+            var summary = BenchmarkRunner.Run<ModifyHashTableChecker<HashTable>>();
             Console.ReadKey();
         }
     }
