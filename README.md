@@ -11,7 +11,7 @@
 
 
 ### 2. HashTable
-HashTable collection:
+
 |              Method |    Mean |    Error |   StdDev | Ratio | Rank |
 |-------------------- |--------:|---------:|---------:|------:|-----:|
 |    ArrayWithoutGaps | 1.189 s | 0.0237 s | 0.0478 s |  1.00 |    1 |
