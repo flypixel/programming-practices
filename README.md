@@ -33,6 +33,6 @@ Updated with checking for existing keys. Benchmarks with bad keys worked too lon
 |          |            |          |           |            |       |      |
 |    Union | 2,475.6 us | 99.19 us | 279.75 us | 2,362.7 us |  1.00 |    1 |
 
-Counts in collection after union
-Union: 8484 (distinct by { Name, Latitude, Longitude }) 
-UnionAll: 9866
+Counts in collection after union  
+Union: 8484 (distinct by { Name, Latitude, Longitude })  
+UnionAll: 9866  
