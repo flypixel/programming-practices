@@ -23,3 +23,16 @@
 |   ThirdHashFunction | 2.778 s | 0.0550 s | 0.0540 s |  1.00 |    1 |
 
 Updated with checking for existing keys. Benchmarks with bad keys worked too long, so it was skipped
+
+
+### 3. Unions
+
+|   Method |       Mean |    Error |    StdDev |     Median | Ratio | Rank |
+|--------- |-----------:|---------:|----------:|-----------:|------:|-----:|
+| UnionAll |   503.7 us | 13.41 us |  38.04 us |   495.8 us |  1.00 |    1 |
+|          |            |          |           |            |       |      |
+|    Union | 2,475.6 us | 99.19 us | 279.75 us | 2,362.7 us |  1.00 |    1 |
+
+Counts in collection after union
+Union: 8484 (distinct by { Name, Latitude, Longitude }) 
+UnionAll: 9866
