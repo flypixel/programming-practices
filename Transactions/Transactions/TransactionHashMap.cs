@@ -71,7 +71,7 @@ namespace Transactions
             var release = _transactions.Pop();
             trans.Release();
 
-            if (release.Id.Equals(trans.Id))
+            if (!release.Id.Equals(trans.Id))
             {
                 throw new ApplicationException("Deadlock expected");
             }
