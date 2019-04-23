@@ -7,28 +7,27 @@ using System.Threading.Tasks;
 
 namespace Transactions
 {
-    public class Transaction<TKey, TValue> where TValue: class
+    public class Transaction<TKey, TValue>
     {
-        private static object _locker = new object();
+        public Guid Id { get; } = Guid.NewGuid();
 
         private Dictionary<TKey, TValue> _addBuffer = new Dictionary<TKey, TValue>();
 
         private HashSet<TKey> _removeBuffer = new HashSet<TKey>();
 
-        public Guid Id { get; } = Guid.NewGuid();
 
         private Transaction()
         {
         }
 
-        public static Transaction<TKey, TValue> Create()
+        internal static Transaction<TKey, TValue> Create(object locker)
         {
-            Monitor.Enter(_locker);
+            Monitor.Enter(locker);
             var trans = new Transaction<TKey, TValue>();
             return trans;
         }
 
-        public bool Add(TKey key, TValue value)
+        internal bool Add(TKey key, TValue value)
         {
             if (_addBuffer.ContainsKey(key))
             {
@@ -39,10 +38,9 @@ namespace Transactions
             return true;
         }
 
-        internal TValue Get(TKey key)
+        internal bool Get(TKey key, out TValue value)
         {
-            _addBuffer.TryGetValue(key, out var value);
-            return value;
+            return _addBuffer.TryGetValue(key, out value);
         }
 
         internal bool Remove(TKey key)
@@ -60,10 +58,15 @@ namespace Transactions
             return _addBuffer;
         }
 
-
-        internal void Release()
+        internal IEnumerable<TKey> GetRemovableKeys()
         {
-            Monitor.Exit(_locker);
+            return _removeBuffer;
+        }
+
+
+        internal void Release(object locker)
+        {
+            Monitor.Exit(locker);
         }
     }
 }
