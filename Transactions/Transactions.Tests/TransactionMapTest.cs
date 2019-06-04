@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Transactions;
-using System.Linq;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using System.Threading;
 
@@ -13,7 +10,7 @@ namespace Transactions.Tests
         (string, int)[] _testData = new[] { ("a", 1), ("b", 2), ("c", 3) };
 
         [TestMethod]
-        public void SimpleAddnTest()
+        public void SimpleAddTest()
         {
             var hashmap = new TransactionHashMap<string, int>();
             foreach (var (k, v) in _testData)
