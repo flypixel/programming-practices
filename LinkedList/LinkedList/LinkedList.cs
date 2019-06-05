@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace LinkedList
 {
@@ -37,7 +38,7 @@ namespace LinkedList
 
         public static void Cons(ref LinkedList<T> list, T value)
         {
-            list = list.Cons(value);
+            Interlocked.Exchange(ref list, list.Cons(value));
         }
 
         public bool IsEmpty => _head == null;
