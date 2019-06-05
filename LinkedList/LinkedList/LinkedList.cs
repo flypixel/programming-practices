@@ -35,6 +35,11 @@ namespace LinkedList
             return new LinkedList<T>(new LinkedListNode<T>(value, _head));
         }
 
+        public static void Cons(ref LinkedList<T> list, T value)
+        {
+            list = list.Cons(value);
+        }
+
         public bool IsEmpty => _head == null;
 
         public IEnumerator<T> GetEnumerator()
