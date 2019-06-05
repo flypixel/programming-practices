@@ -2,9 +2,9 @@
 {
     internal class LinkedListNode<T>
     {
-        public T Value { get; set; }
+        public T Value { get; }
 
-        public LinkedListNode<T> Next { get; set; }
+        public LinkedListNode<T> Next { get; }
 
         public LinkedListNode(T value, LinkedListNode<T> next)
         {
