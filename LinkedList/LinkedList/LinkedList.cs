@@ -36,9 +36,17 @@ namespace LinkedList
             return new LinkedList<T>(new LinkedListNode<T>(value, _head));
         }
 
+        // lock free assignment
         public static void Cons(ref LinkedList<T> list, T value)
         {
-            Interlocked.Exchange(ref list, list.Cons(value));
+            LinkedList<T> prev;
+            LinkedList<T> created;
+
+            do
+            {
+                prev = list;
+                created = list.Cons(value);
+            } while (!Interlocked.CompareExchange(ref list, created, prev).Equals(prev));
         }
 
         public bool IsEmpty => _head == null;
