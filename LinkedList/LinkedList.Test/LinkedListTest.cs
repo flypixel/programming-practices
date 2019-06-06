@@ -40,9 +40,16 @@ namespace Tests
             var list = new LinkedList<int>(1, 2, 3, 4);
             var newList = list.Cons(0).ToArray();
 
-            LinkedList<int>.Cons(ref list, 5);
-
             AssertArrayComparison(newList, new int[] { 0, 1, 2, 3, 4 });
+        }
+
+        [Test]
+        public void PushTest()
+        {
+            var list = new LinkedList<int>(1, 2, 3, 4);
+
+            list.Push(5);
+
             AssertArrayComparison(list.ToArray(), new int[] { 5, 1, 2, 3, 4 });
         }
 

@@ -8,7 +8,7 @@ namespace LinkedList
 {
     public class LinkedList<T>: IEnumerable<T>
     {
-        private readonly LinkedListNode<T> _head = null;
+        private volatile LinkedListNode<T> _head = null;
 
         public T Head => (_head ?? throw new AccessViolationException("list is empty")).Value;
         public LinkedList<T> Tail => new LinkedList<T>(_head.Next);
@@ -36,17 +36,17 @@ namespace LinkedList
             return new LinkedList<T>(new LinkedListNode<T>(value, _head));
         }
 
-        // lock free assignment
-        public static void Cons(ref LinkedList<T> list, T value)
+        // lock free mutation
+        public void Push(T value)
         {
-            LinkedList<T> prev;
-            LinkedList<T> created;
+            LinkedListNode<T> prev;
+            LinkedListNode<T> created;
 
             do
             {
-                prev = list;
-                created = list.Cons(value);
-            } while (!Interlocked.CompareExchange(ref list, created, prev).Equals(prev));
+                prev = _head;
+                created = new LinkedListNode<T>(value, _head);
+            } while (!Interlocked.CompareExchange(ref _head, created, prev).Equals(prev));
         }
 
         public bool IsEmpty => _head == null;
