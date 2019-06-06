@@ -46,7 +46,8 @@ namespace LinkedList
             {
                 prev = _head;
                 created = new LinkedListNode<T>(value, _head);
-            } while (!Interlocked.CompareExchange(ref _head, created, prev).Equals(prev));
+                Interlocked.CompareExchange(ref _head, created, prev);
+            } while (_head.Equals(prev));
         }
 
         public bool IsEmpty => _head == null;
