@@ -31,11 +31,6 @@ namespace LinkedList
             _head = node;
         }
 
-        public LinkedList<T> Cons(T value)
-        {
-            return new LinkedList<T>(new LinkedListNode<T>(value, _head));
-        }
-
         // lock free mutation
         public void Push(T value)
         {
@@ -48,6 +43,11 @@ namespace LinkedList
                 created = new LinkedListNode<T>(value, _head);
                 Interlocked.CompareExchange(ref _head, created, prev);
             } while (_head.Equals(prev));
+        }
+
+        public LinkedList<T> Cons(T value)
+        {
+            return new LinkedList<T>(new LinkedListNode<T>(value, _head));
         }
 
         public bool IsEmpty => _head == null;
