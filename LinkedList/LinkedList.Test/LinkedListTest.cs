@@ -67,6 +67,16 @@ namespace Tests
             Assert.AreEqual(list.Head, 1);
         }
 
+        [Test]
+        public void CheckInterlocked()
+        {
+            object curr = 1;
+            object prev = curr;
+
+            object origin = Interlocked.CompareExchange(ref curr, 2, prev);
+            Assert.AreNotEqual(origin, curr);
+        }
+
         private void AssertArrayComparison<T>(T[] expected, T[] result)
         {
             Assert.AreEqual(expected.Length, result.Length);
