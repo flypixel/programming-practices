@@ -35,7 +35,7 @@ namespace LinkedList
         public void Push(T value)
         {
             LinkedListNode<T> prev;
-            LinkedListNode<T> created = new LinkedListNode<T>(value, _head);
+            LinkedListNode<T> created = new LinkedListNode<T>(value);
 
             do
             {
