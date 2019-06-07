@@ -35,12 +35,12 @@ namespace LinkedList
         public void Push(T value)
         {
             LinkedListNode<T> prev;
-            LinkedListNode<T> created;
+            LinkedListNode<T> created = new LinkedListNode<T>(value, _head);
 
             do
             {
                 prev = _head;
-                created = new LinkedListNode<T>(value, _head);
+                created.Next = _head;
                 Interlocked.CompareExchange(ref _head, created, prev);
             } while (_head.Equals(prev));
         }
