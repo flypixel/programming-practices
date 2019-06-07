@@ -34,12 +34,12 @@ namespace LinkedList
         // lock free mutation
         public void Push(T value)
         {
-            LinkedListNode<T> prev;
+            LinkedListNode<T> prev = null;
             LinkedListNode<T> created;
 
             do
             {
-                prev = _head;
+                Interlocked.Exchange(ref prev, _head);
                 created = new LinkedListNode<T>(value, _head);
                 Interlocked.CompareExchange(ref _head, created, prev);
             } while (_head.Equals(prev));
