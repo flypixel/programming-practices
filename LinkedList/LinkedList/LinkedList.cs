@@ -41,8 +41,7 @@ namespace LinkedList
             {
                 prev = _head;
                 created = new LinkedListNode<T>(value, _head);
-                Interlocked.CompareExchange(ref _head, created, prev);
-            } while (_head.Equals(prev));
+            } while (Interlocked.CompareExchange(ref _head, created, prev) != prev);
         }
 
         public LinkedList<T> Cons(T value)

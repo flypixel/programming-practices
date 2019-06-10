@@ -75,6 +75,7 @@ namespace Tests
 
             object origin = Interlocked.CompareExchange(ref curr, 2, prev);
             Assert.AreNotSame(origin, curr);
+            Assert.AreSame(origin, prev);
         }
 
         private void AssertArrayComparison<T>(T[] expected, T[] result)
