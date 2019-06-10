@@ -39,8 +39,8 @@ namespace LinkedList
 
             do
             {
-                prev = _head;
                 created.Next = _head;
+                prev = _head;
             } while (Interlocked.CompareExchange(ref _head, created, prev) != prev);
         }
 
