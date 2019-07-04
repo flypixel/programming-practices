@@ -18,8 +18,7 @@ namespace Builder
 
         public BoxBuilder SetWith(int value)
         {
-            var version = _version;
-            Interlocked.Increment(ref _version);
+            int version;
             do
             {
                 version = _version;
@@ -30,7 +29,7 @@ namespace Builder
 
         public BoxBuilder SetHeight(int value)
         {
-            var version = _version;
+            int version;
             do
             {
                 version = _version;
