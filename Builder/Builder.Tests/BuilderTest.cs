@@ -8,9 +8,17 @@ namespace Builder.Tests
         [Test]
         public void CreateTest()
         {
-            var builder = new ObjectBuilder();
-            builder.Create("First object");
-            Assert.Pass();
+            var builder = new BoxBuilder()
+                .SetHeight(5)
+                .SetLenght(4)
+                .SetWith(6);
+
+            var box1 = builder.Create();
+            var box2 = builder.Create();
+            Assert.AreEqual(box1, box2);
+
+            var box3 = builder.SetWith(1).Create();
+            Assert.AreNotEqual(box1, box3);
         }
     }
 }
